@@ -1,110 +1,13 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage[brazilian]{babel}
-\usepackage{outlines}
-\usepackage{graphicx}
-\usepackage{indentfirst}
-\usepackage{subcaption}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{datetime}
-\setlength{\parskip}{.5em}
-\usepackage{enumitem}
-\setlist{nosep}
-\usepackage[section]{placeins}
+\documentclass[12pt]{article}
+\usepackage{dicas}
+
 \def\tam{0.5}
-\usepackage[all]{nowidow}
-\nowidow
-\noclub
-\usepackage[scale=1.5]{ccicons}
-\usepackage{soul}
-\usepackage{authblk}
-\usepackage{hyperref}
+
 \title{Dicas para Concurso de Professor}
 \author{Geraldo Xexéo}
 \affil{\url{xexeo@ufrj.br} \\
 \url{http://xexeo.net}}
 \date{\ccbyncsa\  - \today}
-
-%%% Formatação
-
-\usepackage[a4paper,top=2cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry}
-
-% Fonte do sistema (XeLaTeX ou LuaLaTeX obrigatório)
-\usepackage{fontspec}
-\setmainfont{Libertinus Serif} % texto com serifa
-\setsansfont{Fira Sans}        % fonte sem serifa para títulos
-
-% Títulos sem serifa
-\usepackage{sectsty}
-\allsectionsfont{\sffamily}
-
-% Ajustes visuais dos títulos
-\usepackage{titlesec}
-\titleformat{\section}
-  {\sffamily\bfseries\large}{\thesection}{1em}{}
-\titleformat{\subsection}
-  {\sffamily\bfseries\normalsize}{\thesubsection}{1em}{}
-
-% Título principal (\maketitle) sem serifa
-\usepackage{xpatch}
-\makeatletter
-\xpatchcmd{\@maketitle}
-  {\LARGE}
-  {\Huge\sffamily\bfseries} % tamanho e estilo do título
-  {}{}
-\makeatother
-
-\usepackage[most]{tcolorbox}
-\usepackage{titlesec}
-\usepackage{xcolor}
-
-% Define barra colorida e texto vazado nos títulos
-\newtcolorbox{fancysection}[2][]{
-  colback=cyan!50!black,
-  colframe=cyan!50!black,
-  coltext = white,
-  left=2mm,                % margem interna menor à esquerda
-  right=0mm,               % sem margem à direita
-  top=-1pt,                 % margem interna superior menor
-  bottom=-1pt,              % margem inferior menor
-  boxrule=0pt,
-  boxsep=2pt,              % espaço interno reduzido
-  borderline west={0mm}{0pt}{cyan!80!black},
-  sharp corners,
-  fontupper=\sffamily\bfseries\Large,
-  before skip=10pt, after skip=5pt,
-  title=#2,#1}
-
-% Redefine \section para usar a nova caixa
-\titleformat{\section}
-  [block] % estilo de bloco
-  {\normalfont} % corpo do título (não usado aqui)
-  {} % sem número explícito
-  {0pt}
-  {%
-    \begin{fancysection}
-    \sffamily\bfseries\Large\thesection\quad
-  }
-  [\end{fancysection}]
-
-
-% Atualiza \leftmark com nome da seção
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
-
-% Cabeçalhos e rodapés
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
-\fancyhead[L]{\sffamily\small Dicas para Concurso de Professor}
-\fancyhead[R]{\sffamily\small \nouppercase{\leftmark}}
-\fancyfoot[C]{\sffamily \thepage/\pageref{LastPage}}
-
-\setlength{\headheight}{14pt}
-%%%
 
 \begin{document}
 

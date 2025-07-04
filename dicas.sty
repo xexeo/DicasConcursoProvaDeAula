@@ -1,0 +1,144 @@
+\ProvidesPackage{dicas}[Estilo para as Dicas de Geraldo Xexéo]
+\RequirePackage{csquotes}
+\RequirePackage[english,brazilian]{babel}
+\RequirePackage{fontspec}
+\RequirePackage{sectsty}
+\RequirePackage{graphicx} 
+\RequirePackage{fontenc}
+\RequirePackage{url,xurl}
+\RequirePackage{subcaption}
+\RequirePackage{caption}
+\RequirePackage{float}
+\usepackage{hyperref}
+\RequirePackage{titlesec}
+\RequirePackage{xpatch}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{titlesec}
+\RequirePackage{xcolor}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{indentfirst}
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+\RequirePackage{rotating}
+\RequirePackage[section]{placeins}
+\RequirePackage[a4paper,top=2cm,left=2.5cm,right=2.5cm,bottom=2cm]{geometry}
+\RequirePackage{amssymb}
+\RequirePackage{needspace}
+\RequirePackage{outlines}
+\RequirePackage{datetime}
+\RequirePackage{enumitem}
+\RequirePackage[all]{nowidow}
+\RequirePackage[scale=1.5]{ccicons}
+\RequirePackage{soul}
+\RequirePackage{authblk}
+\usepackage{array}
+% Para as colunas com largura fixa e alinhamento à esquerda
+
+
+
+\usepackage[natbib,style=authoryear]{biblatex}
+
+\RequirePackage{hyperref}
+
+\setlength{\parskip}{.5em}
+\setlist{nosep}
+\nowidow
+\noclub
+\widowpenalty=10000   % evita viúvas (última linha sozinha no topo da página)
+\clubpenalty=10000    % evita órfãs (primeira linha sozinha no fim da página)
+
+
+% Fonte do sistema (XeLaTeX ou LuaLaTeX obrigatório)
+%\RequirePackage{fontspec}
+\setmainfont{Libertinus Serif} % texto com serifa
+\setsansfont{Fira Sans}        % fonte sem serifa para títulos
+
+% Títulos sem serifa
+%\RequirePackage{sectsty}
+\allsectionsfont{\sffamily}
+
+% Ajustes visuais dos títulos
+%\RequirePackage{titlesec}
+\titleformat{\section}
+  {\sffamily\bfseries\large}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\sffamily\bfseries\normalsize}{\thesubsection}{1em}{}
+
+% Título principal (\maketitle) sem serifa
+%\RequirePackage{xpatch}
+\makeatletter
+\xpatchcmd{\@maketitle}
+  {\LARGE}
+  {\Huge\sffamily\bfseries} % tamanho e estilo do título
+  {}{}
+\makeatother
+
+
+
+% Define barra colorida e texto vazado nos títulos
+\newtcolorbox{fancysection}[2][]{
+  colback=cyan!50!black,
+  colframe=cyan!50!black,
+  coltext = white,
+  left=2mm,                % margem interna menor à esquerda
+  right=0mm,               % sem margem à direita
+  top=-1pt,                 % margem interna superior menor
+  bottom=-1pt,              % margem inferior menor
+  boxrule=0pt,
+  boxsep=2pt,              % espaço interno reduzido
+  borderline west={0mm}{0pt}{cyan!80!black},
+  sharp corners,
+  fontupper=\sffamily\bfseries\Large,
+  before skip=10pt, after skip=5pt,
+  title=#2,#1}
+
+% Redefine \section para usar a nova caixa
+\titleformat{\section}
+  [block] % estilo de bloco
+  {\normalfont} % corpo do título (não usado aqui)
+  {} % sem número explícito
+  {0pt}
+  {%
+    \begin{fancysection}
+    \sffamily\bfseries\Large\thesection\quad
+  }
+  [\end{fancysection}]
+
+
+% Atualiza \leftmark com nome da seção
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+% Cabeçalhos e rodapés
+%\RequirePackage{fancyhdr}
+%\RequirePackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+
+
+\newcommand{\tituloDocumento}{}
+\let\oldtitle\title
+\renewcommand{\title}[1]{%
+  \oldtitle{#1}%
+  \gdef\tituloDocumento{#1}%
+}
+
+\newcommand{\setshorttile}[1]
+{\gdef\tituloDocumento{#1}}
+
+\AtBeginDocument{%
+  \fancyhead[L]{\sffamily\small \tituloDocumento}
+  \fancyhead[R]{\sffamily\small \nouppercase{\leftmark}}
+  \fancyfoot[C]{\sffamily \thepage/\pageref{LastPage}}
+}
+
+% Colunas novas
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+
+\setlength{\headheight}{14pt}
+
+\usepackage{needspace}
